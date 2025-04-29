@@ -22,7 +22,7 @@ export default function AskAI() {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  const router = typeof window !== 'undefined' ? useRouter() : null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +48,9 @@ export default function AskAI() {
       setResponse(data);
 
       // Navigate to /recommendations after successful submission
-      router.push('/recommendations');
+      if (router) {
+        router.push('/recommendations');
+      }
     } catch (err) {
       setError('Failed to get answer. Please try again.');
       console.error('Error asking AI:', err);

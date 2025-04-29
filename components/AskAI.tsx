@@ -17,7 +17,7 @@ interface AIResponse {
   sources: Source[];
 }
 
-export function AskAI() {
+export default function AskAI() {
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);

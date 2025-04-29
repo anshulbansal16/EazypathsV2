@@ -1,7 +1,9 @@
+'use client';
+
 import { WebCrawler } from '../components/WebCrawler';
 import dynamic from 'next/dynamic';
 
-const AskAI = dynamic(() => import('@/components/AskAI'), { ssr: false });
+const AskAI = dynamic(() => import('@/components/AskAI').then((mod) => mod.default), { ssr: false });
 
 export default function CrawlerPage() {
   return (
